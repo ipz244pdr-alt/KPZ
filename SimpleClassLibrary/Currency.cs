@@ -4,8 +4,20 @@ namespace SimpleClassLibrary
 {
     public class Currency
     {
-        protected string name;
-        protected double exRate;
+        protected string name = "UAH";
+protected decimal exRate = 1.0m;
+
+public string Name
+{
+    get => name;
+    set => name = !string.IsNullOrWhiteSpace(value) ? value : "UAH";
+}
+
+public decimal ExRate
+{
+    get => exRate;
+    set => exRate = value > 0 ? value : 1.0m;
+}
 
         public Currency()
         {
