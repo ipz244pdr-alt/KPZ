@@ -53,16 +53,12 @@ namespace SimpleClassConlsole
                 double shelfLifeValue = double.Parse(Console.ReadLine());
                 int shelfLifeDays = 0;
 
-               public static int CalculateDays(double value, int unitChoice)
-{
-    return unitChoice switch
-    {
-        1 => (int)value,       
-        2 => (int)(value * 30),    
-        3 => (int)(value * 365),   
-        _ => 0
-    };
-}
+                switch (choice)
+                {
+                    case 1: shelfLifeDays = (int)shelfLifeValue; break;
+                    case 2: shelfLifeDays = (int)(shelfLifeValue * 30); break;
+                    case 3: shelfLifeDays = (int)(shelfLifeValue * 365); break;
+                }
 
                 products[i] = new Product(name, price, cost, quantity, producer, weight, shelfLifeDays);
             }
