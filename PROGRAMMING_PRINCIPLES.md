@@ -6,7 +6,7 @@
 
 Приклад: Обчислення терміну придатності в днях через простий оператор switch. Код легко читається і не використовує складних сторонніх бібліотек для роботи з часом, де це не є критичним.
 
-Код: SimpleClassConlsole/Program.cs#L51-L56
+Код: Код: [SimpleClassConlsole/Program.cs (рядки 51-56)](https://github.com/ipz244pdr-alt/KPZ/blob/master/SimpleClassConlsole/Program.cs#L51-L56)
 
 2. DRY (Don't Repeat Yourself)
 Уникнення дублювання логіки шляхом винесення функціоналу в окремі методи та класи.
