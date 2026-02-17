@@ -6,14 +6,14 @@
 
 Приклад: Обчислення терміну придатності в днях через простий оператор switch. Код легко читається і не використовує складних сторонніх бібліотек для роботи з часом, де це не є критичним.
 
-Код: Код: [SimpleClassConlsole/Program.cs (рядки 51-56)](https://github.com/ipz244pdr-alt/KPZ/blob/master/SimpleClassConlsole/Program.cs#L51-L56)
+Код:https://github.com/ipz244pdr-alt/KPZ/blob/f888152b956cbe68c33064a3e6374386e6ce068e/SimpleClassConlsole/Product.cs#L56C15-L61C18
 
 2. DRY (Don't Repeat Yourself)
 Уникнення дублювання логіки шляхом винесення функціоналу в окремі методи та класи.
 
 Приклад: Метод PrintProducts відповідає за виведення масиву товарів, що дозволяє уникнути повторення циклу foreach у різних частинах програми, якщо знадобиться виводити список десь ще. Також логіка розрахунку терміну придатності в місяцях/роках інкапсульована в корисні властивості (getters).
 
-Код: * SimpleClassConlsole/Program.cs#L64-L70 — метод друку.
+Код:
 
 SimpleClassLibrary/Product.cs#L51-L61 — властивості перерахунку часу.
 
