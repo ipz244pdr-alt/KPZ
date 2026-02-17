@@ -38,16 +38,16 @@ public decimal ExRate
         }
 
         public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+{
+    get => name;
+    set => name = !string.IsNullOrWhiteSpace(value) ? value : "UAH";
+}
 
-        public double ExRate
-        {
-            get { return exRate; }
-            set { exRate = value; }
-        }
+public decimal ExRate
+{
+    get => exRate;
+    set => exRate = value > 0 ? value : 1.0m;
+}
 
         public override string ToString()
         {
