@@ -6,14 +6,14 @@
 
 Приклад: Обчислення терміну придатності в днях через простий оператор switch. Код легко читається і не використовує складних сторонніх бібліотек для роботи з часом, де це не є критичним.
 
-Код:https://github.com/ipz244pdr-alt/KPZ/blob/f888152b956cbe68c33064a3e6374386e6ce068e/SimpleClassConlsole/Product.cs#L56C15-L61C18
+[Приклад у коді: ](https://github.com/ipz244pdr-alt/KPZ/blob/f888152b956cbe68c33064a3e6374386e6ce068e/SimpleClassConlsole/Product.cs#L56C15-L61C18)
 
 2. DRY (Don't Repeat Yourself)
 Уникнення дублювання логіки шляхом винесення функціоналу в окремі методи та класи.
 
 Приклад: Метод PrintProducts відповідає за виведення масиву товарів, що дозволяє уникнути повторення циклу foreach у різних частинах програми, якщо знадобиться виводити список десь ще. Також логіка розрахунку терміну придатності в місяцях/роках інкапсульована в корисні властивості (getters).
 
-Код:https://github.com/ipz244pdr-alt/KPZ/blob/f888152b956cbe68c33064a3e6374386e6ce068e/SimpleClassConlsole/Product.cs#L68C9-L73C14
+[Приклад у коді: ](https://github.com/ipz244pdr-alt/KPZ/blob/f888152b956cbe68c33064a3e6374386e6ce068e/SimpleClassConlsole/Product.cs#L68C9-L73C14)
 
 
 3. Encapsulation (Інкапсуляція)
@@ -21,5 +21,5 @@
 
 Приклад: Властивість ShelfLifeDays у класі Product містить логіку перевірки: термін придатності не може бути меншим за 0. Це гарантує цілісність даних об'єкта.
 
-Код: [SimpleClassLibrary/Product.cs#L45-L49](https://github.com/ipz244pdr-alt/KPZ/blob/f868b3a923d740fa03356e2e357096f9e811c134/SimpleClassLibrary/Product.cs#L42C1-L46C10)
+[Приклад у коді: ](https://github.com/ipz244pdr-alt/KPZ/blob/f868b3a923d740fa03356e2e357096f9e811c134/SimpleClassLibrary/Product.cs#L42C1-L46C10)
 
