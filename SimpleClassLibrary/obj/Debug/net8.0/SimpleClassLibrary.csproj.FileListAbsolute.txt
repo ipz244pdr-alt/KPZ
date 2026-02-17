@@ -1,0 +1,11 @@
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\bin\Debug\net8.0\SimpleClassLibrary.deps.json
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\bin\Debug\net8.0\SimpleClassLibrary.dll
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\bin\Debug\net8.0\SimpleClassLibrary.pdb
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.AssemblyInfoInputs.cache
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.AssemblyInfo.cs
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.dll
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\refint\SimpleClassLibrary.dll
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\SimpleClassLibrary.pdb
+C:\Users\12345\source\repos\oop-lab5\SimpleClassLibrary\obj\Debug\net8.0\ref\SimpleClassLibrary.dll
