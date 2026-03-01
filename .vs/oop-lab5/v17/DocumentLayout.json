@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\12345\\source\\repos\\oop-lab5\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassConlsole\\Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SimpleClassConlsole\\Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\simpleclasslibrary\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|solutionrelative:simpleclasslibrary\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\simpleclasslibrary\\currency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|solutionrelative:simpleclasslibrary\\currency.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\simpleclasslibrary\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|solutionrelative:simpleclasslibrary\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\simpleclasslibrary\\simpleclasslibrary.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D85592CC-8BE8-49FD-B8E9-0D36BBF063B4}|SimpleClassLibrary\\SimpleClassLibrary.csproj|solutionrelative:simpleclasslibrary\\simpleclasslibrary.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassConlsole\\Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SimpleClassConlsole\\Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 341,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,26 +34,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SimpleClassLibrary",
-              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassLibrary\\SimpleClassLibrary.csproj",
-              "RelativeDocumentMoniker": "SimpleClassLibrary\\SimpleClassLibrary.csproj",
-              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassLibrary\\SimpleClassLibrary.csproj",
-              "RelativeToolTip": "SimpleClassLibrary\\SimpleClassLibrary.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-17T23:01:42.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassLibrary\\Product.cs",
               "RelativeDocumentMoniker": "SimpleClassLibrary\\Product.cs",
               "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassLibrary\\Product.cs",
               "RelativeToolTip": "SimpleClassLibrary\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwEEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-17T23:01:33.368Z",
               "EditorCaption": ""
@@ -70,20 +53,20 @@
               "RelativeDocumentMoniker": "SimpleClassLibrary\\Currency.cs",
               "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassLibrary\\Currency.cs",
               "RelativeToolTip": "SimpleClassLibrary\\Currency.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-17T23:01:30.407Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassConlsole\\Product.cs",
               "RelativeDocumentMoniker": "SimpleClassConlsole\\Product.cs",
               "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\SimpleClassConlsole\\Product.cs",
               "RelativeToolTip": "SimpleClassConlsole\\Product.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAwwCUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAmwEsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T12:32:37.506Z",
               "EditorCaption": ""
