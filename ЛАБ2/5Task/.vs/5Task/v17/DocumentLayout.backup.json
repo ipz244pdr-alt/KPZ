@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\\u043B\u0430\u04312\\5task\\5task\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\\u043B\u0430\u04312\\5task\\5task\\consoleapp1\\director.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\director.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\\u043B\u0430\u04312\\5task\\5task\\consoleapp1\\builders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\builders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\\u043B\u0430\u04312\\5task\\5task\\consoleapp1\\icharacterbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\icharacterbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|c:\\users\\12345\\source\\repos\\oop-lab5\\\u043B\u0430\u04312\\5task\\5task\\consoleapp1\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE6811B2-2023-4203-9611-7F488524F15D}|ConsoleApp1\\ConsoleApp1.csproj|solutionrelative:consoleapp1\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 341,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Director.cs",
+              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Director.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Director.cs",
+              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Director.cs",
+              "RelativeToolTip": "ConsoleApp1\\Director.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T21:05:41.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Builders.cs",
+              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Builders.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Builders.cs",
+              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Builders.cs",
+              "RelativeToolTip": "ConsoleApp1\\Builders.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAcwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T21:05:02.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ICharacterBuilder.cs",
+              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\ICharacterBuilder.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\ICharacterBuilder.cs",
+              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\ICharacterBuilder.cs",
+              "RelativeToolTip": "ConsoleApp1\\ICharacterBuilder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T21:04:43.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Character.cs",
+              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Character.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Character.cs",
+              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Character.cs",
+              "RelativeToolTip": "ConsoleApp1\\Character.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T21:03:15.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Program.cs",
+              "RelativeDocumentMoniker": "ConsoleApp1\\Program.cs",
+              "ToolTip": "C:\\Users\\12345\\source\\repos\\oop-lab5\\\u041B\u0410\u04112\\5Task\\5Task\\ConsoleApp1\\Program.cs",
+              "RelativeToolTip": "ConsoleApp1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T21:02:45.92Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
