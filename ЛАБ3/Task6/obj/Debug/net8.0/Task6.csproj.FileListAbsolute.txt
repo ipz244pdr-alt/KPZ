@@ -1,0 +1,15 @@
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\bin\Debug\net8.0\Task6.exe
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\bin\Debug\net8.0\Task6.deps.json
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\bin\Debug\net8.0\Task6.runtimeconfig.json
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\bin\Debug\net8.0\Task6.dll
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\bin\Debug\net8.0\Task6.pdb
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.AssemblyInfoInputs.cache
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.AssemblyInfo.cs
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.csproj.CoreCompileInputs.cache
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.sourcelink.json
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.dll
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\refint\Task6.dll
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.pdb
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\Task6.genruntimeconfig.cache
+C:\Users\12345\source\repos\oop-lab5\ЛАБ3\Task1\Task6\obj\Debug\net8.0\ref\Task6.dll
