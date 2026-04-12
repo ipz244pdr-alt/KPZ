@@ -1,111 +1,114 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CompositePatternLightHTML
 {
-    public abstract class LightNode
-    {
-        public abstract string OuterHTML();
-        public abstract string InnerHTML();
-    }
-    public class LightTextNode : LightNode
-    {
-        private readonly string _text;
-        public LightTextNode(string text) => _text = text;
+    public abstract class LightNode
+    {
+        public abstract string OuterHTML();
+        public abstract string InnerHTML();
 
-        public override string InnerHTML() => _text;
-        public override string OuterHTML() => _text;
-    }
-    public enum DisplayType { Block, Inline }
-    public enum ClosingType { Normal, Single }
+        public string Render()
+        {
+            OnBeforeRender();
+            string html = OuterHTML();
+            OnAfterRender();
+            return html;
+        }
 
-    public class LightElementNode : LightNode
-    {
-        private readonly string _tagName;
-        private readonly DisplayType _displayType;
-        private readonly ClosingType _closingType;
-        private readonly List<string> _cssClasses = new List<string>();
-        private readonly List<LightNode> _children = new List<LightNode>();
-        public LightElementNode(string tagName, DisplayType display, ClosingType closing)
-        {
-            _tagName = tagName;
-            _displayType = display;
-            _closingType = closing;
-        }
+        protected virtual void OnBeforeRender() { }
+        protected virtual void OnAfterRender() { }
+    }
 
-        public void AddClass(string className) => _cssClasses.Add(className);
-        public void AddChild(LightNode node) => _children.Add(node);
+    public class LightTextNode : LightNode
+    {
+        private readonly string _text;
+        public LightTextNode(string text) => _text = text;
 
-        public override string InnerHTML()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var child in _children)
-            {
-                sb.Append(child.OuterHTML());
-            }
-            return sb.ToString();
-        }
-        public override string OuterHTML()
-        {
-            StringBuilder sb = new StringBuilder();
-            string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
+        public override string InnerHTML() => _text;
+        public override string OuterHTML() => _text;
+    }
 
-            sb.Append($"<{_tagName}{classes}");
+    public enum DisplayType { Block, Inline }
+    public enum ClosingType { Normal, Single }
 
-            if (_closingType == ClosingType.Single)
-            {
-                sb.Append(" />");
-            }
-            else
-            {
-                sb.Append(">");
-                sb.Append(InnerHTML());
-                sb.Append($"</{_tagName}>");
-            }
-            return _displayType == DisplayType.Block ? sb.ToString() + Environment.NewLine : sb.ToString();
-        }
-    }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.OutputEncoding = Encoding.UTF8;
+    public class LightElementNode : LightNode
+    {
+        private readonly string _tagName;
+        private readonly DisplayType _displayType;
+        private readonly ClosingType _closingType;
+        private readonly List<string> _cssClasses = new List<string>();
+        private readonly List<LightNode> _children = new List<LightNode>();
 
-            var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
-            table.AddClass("main-table");
+        public LightElementNode(string tagName, DisplayType display, ClosingType closing)
+        {
+            _tagName = tagName;
+            _displayType = display;
+            _closingType = closing;
+        }
 
-            var headerRow = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
+        public void AddClass(string className) => _cssClasses.Add(className);
+        public void AddChild(LightNode node) => _children.Add(node);
 
-            var th1 = new LightElementNode("th", DisplayType.Inline, ClosingType.Normal);
-            th1.AddChild(new LightTextNode("Назва"));
+        protected override void OnBeforeRender()
+        {
+            Console.WriteLine($"Starting render of <{_tagName}>");
+        }
 
-            var th2 = new LightElementNode("th", DisplayType.Inline, ClosingType.Normal);
-            th2.AddChild(new LightTextNode("Ціна"));
+        protected override void OnAfterRender()
+        {
+            Console.WriteLine($"Finished render of <{_tagName}>");
+        }
 
-            headerRow.AddChild(th1);
-            headerRow.AddChild(th2);
-            table.AddChild(headerRow);
-            var dataRow = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
+        public override string InnerHTML()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var child in _children)
+            {
+                sb.Append(child.Render());
+            }
+            return sb.ToString();
+        }
 
-            var td1 = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
-            td1.AddChild(new LightTextNode("Ноутбук"));
+        public override string OuterHTML()
+        {
+            StringBuilder sb = new StringBuilder();
+            string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
 
-            var td2 = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
-            td2.AddChild(new LightTextNode("25000 грн"));
+            sb.Append($"<{_tagName}{classes}");
 
-            dataRow.AddChild(td1);
-            dataRow.AddChild(td2);
-            table.AddChild(dataRow);
+            if (_closingType == ClosingType.Single)
+            {
+                sb.Append(" />");
+            }
+            else
+            {
+                sb.Append(">");
+                sb.Append(InnerHTML());
+                sb.Append($"</{_tagName}>");
+            }
+            return _displayType == DisplayType.Block ? sb.ToString() + Environment.NewLine : sb.ToString();
+        }
+    }
 
-            var hr = new LightElementNode("hr", DisplayType.Block, ClosingType.Single);
-            Console.WriteLine("=== Вивід LightHTML Таблиці ===\n");
-            Console.WriteLine(table.OuterHTML());
-            Console.WriteLine(hr.OuterHTML());
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
 
-            Console.WriteLine("\n=== Перевірка InnerHTML таблиці (тільки вміст) ===");
-            Console.WriteLine(table.InnerHTML());
-            Console.ReadKey();
-        }
-    }
+            var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
+            table.AddClass("main-table");
+
+            var tr = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
+            var td = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
+            td.AddChild(new LightTextNode("Content"));
+            
+            tr.AddChild(td);
+            table.AddChild(tr);
+
+            Console.WriteLine(table.Render());
+        }
+    }
 }
