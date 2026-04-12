@@ -15,9 +15,23 @@ namespace CompositePatternLightHTML
     {
         public int ElementsCount { get; private set; }
         public int TextCount { get; private set; }
-
         public void Visit(LightTextNode textNode) => TextCount++;
         public void Visit(LightElementNode elementNode) => ElementsCount++;
+    }
+
+    public interface IElementState
+    {
+        string Render(LightElementNode node);
+    }
+
+    public class VisibleState : IElementState
+    {
+        public string Render(LightElementNode node) => node.BaseOuterHTML();
+    }
+
+    public class HiddenState : IElementState
+    {
+        public string Render(LightElementNode node) => "";
     }
 
     public abstract class LightNode
@@ -42,10 +56,8 @@ namespace CompositePatternLightHTML
     {
         private readonly string _text;
         public LightTextNode(string text) => _text = text;
-
         public override string InnerHTML() => _text;
         public override string OuterHTML() => _text;
-
         public override void Accept(ILightNodeVisitor visitor) => visitor.Visit(this);
     }
 
@@ -59,6 +71,7 @@ namespace CompositePatternLightHTML
         private readonly ClosingType _closingType;
         private readonly List<string> _cssClasses = new List<string>();
         private readonly List<LightNode> _children = new List<LightNode>();
+        private IElementState _state = new VisibleState();
 
         public LightElementNode(string tagName, DisplayType display, ClosingType closing)
         {
@@ -67,6 +80,7 @@ namespace CompositePatternLightHTML
             _closingType = closing;
         }
 
+        public void SetState(IElementState state) => _state = state;
         public void AddClass(string className) => _cssClasses.Add(className);
         public void AddChild(LightNode node) => _children.Add(node);
         public List<LightNode> GetChildren() => _children;
@@ -74,26 +88,19 @@ namespace CompositePatternLightHTML
         public override void Accept(ILightNodeVisitor visitor)
         {
             visitor.Visit(this);
-            foreach (var child in _children)
-            {
-                child.Accept(visitor);
-            }
+            foreach (var child in _children) child.Accept(visitor);
         }
-
-        protected override void OnBeforeRender() { }
-        protected override void OnAfterRender() { }
 
         public override string InnerHTML()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var child in _children)
-            {
-                sb.Append(child.Render());
-            }
+            foreach (var child in _children) sb.Append(child.Render());
             return sb.ToString();
         }
 
-        public override string OuterHTML()
+        public override string OuterHTML() => _state.Render(this);
+
+        public string BaseOuterHTML()
         {
             StringBuilder sb = new StringBuilder();
             string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
@@ -137,13 +144,15 @@ namespace CompositePatternLightHTML
     {
         static void Main(string[] args)
         {
-            var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
-            table.AddChild(new LightTextNode("Data"));
-            
-            var stats = new StatisticsVisitor();
-            table.Accept(stats);
-            
-            Console.WriteLine($"Elements: {stats.ElementsCount}, Text nodes: {stats.TextCount}");
+            var div = new LightElementNode("div", DisplayType.Block, ClosingType.Normal);
+            div.AddChild(new LightTextNode("I am visible"));
+
+            Console.WriteLine("State: Visible");
+            Console.WriteLine(div.Render());
+
+            div.SetState(new HiddenState());
+            Console.WriteLine("State: Hidden");
+            Console.WriteLine(div.Render());
         }
     }
 }
