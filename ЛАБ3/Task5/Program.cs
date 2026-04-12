@@ -5,10 +5,26 @@ using System.Collections;
 
 namespace CompositePatternLightHTML
 {
+    public interface ILightNodeVisitor
+    {
+        void Visit(LightTextNode textNode);
+        void Visit(LightElementNode elementNode);
+    }
+
+    public class StatisticsVisitor : ILightNodeVisitor
+    {
+        public int ElementsCount { get; private set; }
+        public int TextCount { get; private set; }
+
+        public void Visit(LightTextNode textNode) => TextCount++;
+        public void Visit(LightElementNode elementNode) => ElementsCount++;
+    }
+
     public abstract class LightNode
     {
         public abstract string OuterHTML();
         public abstract string InnerHTML();
+        public abstract void Accept(ILightNodeVisitor visitor);
 
         public string Render()
         {
@@ -29,6 +45,8 @@ namespace CompositePatternLightHTML
 
         public override string InnerHTML() => _text;
         public override string OuterHTML() => _text;
+
+        public override void Accept(ILightNodeVisitor visitor) => visitor.Visit(this);
     }
 
     public enum DisplayType { Block, Inline }
@@ -53,15 +71,17 @@ namespace CompositePatternLightHTML
         public void AddChild(LightNode node) => _children.Add(node);
         public List<LightNode> GetChildren() => _children;
 
-        protected override void OnBeforeRender()
+        public override void Accept(ILightNodeVisitor visitor)
         {
-            Console.WriteLine($"Starting render of <{_tagName}>");
+            visitor.Visit(this);
+            foreach (var child in _children)
+            {
+                child.Accept(visitor);
+            }
         }
 
-        protected override void OnAfterRender()
-        {
-            Console.WriteLine($"Finished render of <{_tagName}>");
-        }
+        protected override void OnBeforeRender() { }
+        protected override void OnAfterRender() { }
 
         public override string InnerHTML()
         {
@@ -77,9 +97,7 @@ namespace CompositePatternLightHTML
         {
             StringBuilder sb = new StringBuilder();
             string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
-
             sb.Append($"<{_tagName}{classes}");
-
             if (_closingType == ClosingType.Single)
             {
                 sb.Append(" />");
@@ -101,21 +119,13 @@ namespace CompositePatternLightHTML
     {
         private readonly List<LightNode> _flatList = new List<LightNode>();
         private int _currentIndex = -1;
-
         public LightElementEnumerator(LightNode root) => Flatten(root);
-
         private void Flatten(LightNode node)
         {
             _flatList.Add(node);
             if (node is LightElementNode element)
-            {
-                foreach (var child in element.GetChildren())
-                {
-                    Flatten(child);
-                }
-            }
+                foreach (var child in element.GetChildren()) Flatten(child);
         }
-
         public LightNode Current => _flatList[_currentIndex];
         object IEnumerator.Current => Current;
         public bool MoveNext() => ++_currentIndex < _flatList.Count;
@@ -127,20 +137,13 @@ namespace CompositePatternLightHTML
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
             var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
-            var tr = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
-            var td = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
-            td.AddChild(new LightTextNode("Cell content"));
-            tr.AddChild(td);
-            table.AddChild(tr);
-
-            Console.WriteLine("=== DFS Iterator Test ===");
-            foreach (var node in table)
-            {
-                Console.WriteLine($"Node: {node.GetType().Name}");
-            }
+            table.AddChild(new LightTextNode("Data"));
+            
+            var stats = new StatisticsVisitor();
+            table.Accept(stats);
+            
+            Console.WriteLine($"Elements: {stats.ElementsCount}, Text nodes: {stats.TextCount}");
         }
     }
 }
