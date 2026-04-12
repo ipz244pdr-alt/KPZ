@@ -5,18 +5,31 @@ using System.Collections;
 
 namespace CompositePatternLightHTML
 {
+    public interface ICommand
+    {
+        void Execute();
+        void Undo();
+    }
+
+    public class AddClassCommand : ICommand
+    {
+        private readonly LightElementNode _node;
+        private readonly string _className;
+
+        public AddClassCommand(LightElementNode node, string className)
+        {
+            _node = node;
+            _className = className;
+        }
+
+        public void Execute() => _node.AddClass(_className);
+        public void Undo() => _node.RemoveClass(_className);
+    }
+
     public interface ILightNodeVisitor
     {
         void Visit(LightTextNode textNode);
         void Visit(LightElementNode elementNode);
-    }
-
-    public class StatisticsVisitor : ILightNodeVisitor
-    {
-        public int ElementsCount { get; private set; }
-        public int TextCount { get; private set; }
-        public void Visit(LightTextNode textNode) => TextCount++;
-        public void Visit(LightElementNode elementNode) => ElementsCount++;
     }
 
     public interface IElementState
@@ -82,6 +95,7 @@ namespace CompositePatternLightHTML
 
         public void SetState(IElementState state) => _state = state;
         public void AddClass(string className) => _cssClasses.Add(className);
+        public void RemoveClass(string className) => _cssClasses.Remove(className);
         public void AddChild(LightNode node) => _children.Add(node);
         public List<LightNode> GetChildren() => _children;
 
@@ -144,15 +158,18 @@ namespace CompositePatternLightHTML
     {
         static void Main(string[] args)
         {
-            var div = new LightElementNode("div", DisplayType.Block, ClosingType.Normal);
-            div.AddChild(new LightTextNode("I am visible"));
+            var p = new LightElementNode("p", DisplayType.Block, ClosingType.Normal);
+            p.AddChild(new LightTextNode("Testing Command Pattern"));
 
-            Console.WriteLine("State: Visible");
-            Console.WriteLine(div.Render());
+            var addClass = new AddClassCommand(p, "highlight-text");
 
-            div.SetState(new HiddenState());
-            Console.WriteLine("State: Hidden");
-            Console.WriteLine(div.Render());
+            Console.WriteLine("Executing Command...");
+            addClass.Execute();
+            Console.WriteLine(p.Render());
+
+            Console.WriteLine("Undoing Command...");
+            addClass.Undo();
+            Console.WriteLine(p.Render());
         }
     }
 }
