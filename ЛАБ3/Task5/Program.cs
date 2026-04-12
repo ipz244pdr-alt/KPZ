@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace CompositePatternLightHTML
 {
@@ -33,7 +34,7 @@ namespace CompositePatternLightHTML
     public enum DisplayType { Block, Inline }
     public enum ClosingType { Normal, Single }
 
-    public class LightElementNode : LightNode
+    public class LightElementNode : LightNode, IEnumerable<LightNode>
     {
         private readonly string _tagName;
         private readonly DisplayType _displayType;
@@ -50,6 +51,7 @@ namespace CompositePatternLightHTML
 
         public void AddClass(string className) => _cssClasses.Add(className);
         public void AddChild(LightNode node) => _children.Add(node);
+        public List<LightNode> GetChildren() => _children;
 
         protected override void OnBeforeRender()
         {
@@ -90,6 +92,35 @@ namespace CompositePatternLightHTML
             }
             return _displayType == DisplayType.Block ? sb.ToString() + Environment.NewLine : sb.ToString();
         }
+
+        public IEnumerator<LightNode> GetEnumerator() => new LightElementEnumerator(this);
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+
+    public class LightElementEnumerator : IEnumerator<LightNode>
+    {
+        private readonly List<LightNode> _flatList = new List<LightNode>();
+        private int _currentIndex = -1;
+
+        public LightElementEnumerator(LightNode root) => Flatten(root);
+
+        private void Flatten(LightNode node)
+        {
+            _flatList.Add(node);
+            if (node is LightElementNode element)
+            {
+                foreach (var child in element.GetChildren())
+                {
+                    Flatten(child);
+                }
+            }
+        }
+
+        public LightNode Current => _flatList[_currentIndex];
+        object IEnumerator.Current => Current;
+        public bool MoveNext() => ++_currentIndex < _flatList.Count;
+        public void Reset() => _currentIndex = -1;
+        public void Dispose() { }
     }
 
     class Program
@@ -99,16 +130,17 @@ namespace CompositePatternLightHTML
             Console.OutputEncoding = Encoding.UTF8;
 
             var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
-            table.AddClass("main-table");
-
             var tr = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
             var td = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
-            td.AddChild(new LightTextNode("Content"));
-            
+            td.AddChild(new LightTextNode("Cell content"));
             tr.AddChild(td);
             table.AddChild(tr);
 
-            Console.WriteLine(table.Render());
+            Console.WriteLine("=== DFS Iterator Test ===");
+            foreach (var node in table)
+            {
+                Console.WriteLine($"Node: {node.GetType().Name}");
+            }
         }
     }
 }
