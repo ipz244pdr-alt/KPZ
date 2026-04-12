@@ -1,203 +1,111 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
-using System.Collections;
 
 namespace CompositePatternLightHTML
 {
-    public interface ILightNodeVisitor
-    {
-        void Visit(LightTextNode textNode);
-        void Visit(LightElementNode elementNode);
-    }
+    public abstract class LightNode
+    {
+        public abstract string OuterHTML();
+        public abstract string InnerHTML();
+    }
+    public class LightTextNode : LightNode
+    {
+        private readonly string _text;
+        public LightTextNode(string text) => _text = text;
 
-    public interface IElementState
-    {
-        string Render(LightElementNode node);
-    }
+        public override string InnerHTML() => _text;
+        public override string OuterHTML() => _text;
+    }
+    public enum DisplayType { Block, Inline }
+    public enum ClosingType { Normal, Single }
 
-    public class VisibleState : IElementState
-    {
-        public string Render(LightElementNode node) => node.BaseOuterHTML();
-    }
+    public class LightElementNode : LightNode
+    {
+        private readonly string _tagName;
+        private readonly DisplayType _displayType;
+        private readonly ClosingType _closingType;
+        private readonly List<string> _cssClasses = new List<string>();
+        private readonly List<LightNode> _children = new List<LightNode>();
+        public LightElementNode(string tagName, DisplayType display, ClosingType closing)
+        {
+            _tagName = tagName;
+            _displayType = display;
+            _closingType = closing;
+        }
 
-    public class HiddenState : IElementState
-    {
-        public string Render(LightElementNode node) => "";
-    }
+        public void AddClass(string className) => _cssClasses.Add(className);
+        public void AddChild(LightNode node) => _children.Add(node);
 
-    public abstract class LightNode
-    {
-        public abstract string OuterHTML();
-        public abstract string InnerHTML();
-        public abstract void Accept(ILightNodeVisitor visitor);
+        public override string InnerHTML()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var child in _children)
+            {
+                sb.Append(child.OuterHTML());
+            }
+            return sb.ToString();
+        }
+        public override string OuterHTML()
+        {
+            StringBuilder sb = new StringBuilder();
+            string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
 
-        public string Render()
-        {
-            OnBeforeRender();
-            string result = OuterHTML();
-            OnAfterRender();
-            return result;
-        }
+            sb.Append($"<{_tagName}{classes}");
 
-        protected virtual void OnBeforeRender() { }
-        protected virtual void OnAfterRender() { }
-    }
+            if (_closingType == ClosingType.Single)
+            {
+                sb.Append(" />");
+            }
+            else
+            {
+                sb.Append(">");
+                sb.Append(InnerHTML());
+                sb.Append($"</{_tagName}>");
+            }
+            return _displayType == DisplayType.Block ? sb.ToString() + Environment.NewLine : sb.ToString();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
 
-    public class LightTextNode : LightNode
-    {
-        private readonly string _text;
-        public LightTextNode(string text) => _text = text;
+            var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
+            table.AddClass("main-table");
 
-        public override string InnerHTML() => _text;
-        public override string OuterHTML() => _text;
+            var headerRow = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
 
-        public override void Accept(ILightNodeVisitor visitor) => visitor.Visit(this);
-    }
+            var th1 = new LightElementNode("th", DisplayType.Inline, ClosingType.Normal);
+            th1.AddChild(new LightTextNode("Назва"));
 
-    public enum DisplayType { Block, Inline }
-    public enum ClosingType { Normal, Single }
+            var th2 = new LightElementNode("th", DisplayType.Inline, ClosingType.Normal);
+            th2.AddChild(new LightTextNode("Ціна"));
 
-    public class LightElementNode : LightNode, IEnumerable<LightNode>
-    {
-        private readonly string _tagName;
-        private readonly DisplayType _displayType;
-        private readonly ClosingType _closingType;
-        private readonly List<string> _cssClasses = new List<string>();
-        private readonly List<LightNode> _children = new List<LightNode>();
-        private IElementState _state = new VisibleState();
+            headerRow.AddChild(th1);
+            headerRow.AddChild(th2);
+            table.AddChild(headerRow);
+            var dataRow = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
 
-        public LightElementNode(string tagName, DisplayType display, ClosingType closing)
-        {
-            _tagName = tagName;
-            _displayType = display;
-            _closingType = closing;
-        }
+            var td1 = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
+            td1.AddChild(new LightTextNode("Ноутбук"));
 
-        public void SetState(IElementState state) => _state = state;
-        public void AddClass(string className) => _cssClasses.Add(className);
-        public void RemoveClass(string className) => _cssClasses.Remove(className);
-        public void AddChild(LightNode node) => _children.Add(node);
-        public List<LightNode> GetChildren() => _children;
+            var td2 = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
+            td2.AddChild(new LightTextNode("25000 грн"));
 
-        public override void Accept(ILightNodeVisitor visitor)
-        {
-            visitor.Visit(this);
-            foreach (var child in _children) child.Accept(visitor);
-        }
+            dataRow.AddChild(td1);
+            dataRow.AddChild(td2);
+            table.AddChild(dataRow);
 
-        public IEnumerator<LightNode> GetEnumerator() => new LightElementEnumerator(this);
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            var hr = new LightElementNode("hr", DisplayType.Block, ClosingType.Single);
+            Console.WriteLine("=== Вивід LightHTML Таблиці ===\n");
+            Console.WriteLine(table.OuterHTML());
+            Console.WriteLine(hr.OuterHTML());
 
-        public override string InnerHTML()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (var child in _children)
-            {
-                sb.Append(child.OuterHTML());
-            }
-            return sb.ToString();
-        }
-
-        public override string OuterHTML() => _state.Render(this);
-
-        public string BaseOuterHTML()
-        {
-            StringBuilder sb = new StringBuilder();
-            string classes = _cssClasses.Count > 0 ? $" class=\"{string.Join(" ", _cssClasses)}\"" : "";
-            sb.Append($"<{_tagName}{classes}");
-
-            if (_closingType == ClosingType.Single)
-            {
-                sb.Append(" />");
-            }
-            else
-            {
-                sb.Append(">");
-                sb.Append(InnerHTML());
-                sb.Append($"</{_tagName}>");
-            }
-            return _displayType == DisplayType.Block ? sb.ToString() + Environment.NewLine : sb.ToString();
-        }
-    }
-
-    public class LightElementEnumerator : IEnumerator<LightNode>
-    {
-        private readonly List<LightNode> _flatList = new List<LightNode>();
-        private int _currentIndex = -1;
-
-        public LightElementEnumerator(LightNode root) => Flatten(root);
-
-        private void Flatten(LightNode node)
-        {
-            _flatList.Add(node);
-            if (node is LightElementNode element)
-                foreach (var child in element.GetChildren()) Flatten(child);
-        }
-
-        public LightNode Current => _flatList[_currentIndex];
-        object IEnumerator.Current => Current;
-        public bool MoveNext() => ++_currentIndex < _flatList.Count;
-        public void Reset() => _currentIndex = -1;
-        public void Dispose() { }
-    }
-
-    public interface ICommand
-    {
-        void Execute();
-        void Undo();
-    }
-
-    public class AddClassCommand : ICommand
-    {
-        private readonly LightElementNode _node;
-        private readonly string _className;
-
-        public AddClassCommand(LightElementNode node, string className)
-        {
-            _node = node;
-            _className = className;
-        }
-
-        public void Execute() => _node.AddClass(_className);
-        public void Undo() => _node.RemoveClass(_className);
-    }
-
-    public class StatisticsVisitor : ILightNodeVisitor
-    {
-        public int ElementsCount { get; private set; }
-        public int TextCount { get; private set; }
-
-        public void Visit(LightTextNode textNode) => TextCount++;
-        public void Visit(LightElementNode elementNode) => ElementsCount++;
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.OutputEncoding = Encoding.UTF8;
-
-            var table = new LightElementNode("table", DisplayType.Block, ClosingType.Normal);
-            var row = new LightElementNode("tr", DisplayType.Block, ClosingType.Normal);
-            var cell = new LightElementNode("td", DisplayType.Inline, ClosingType.Normal);
-            cell.AddChild(new LightTextNode("Дані"));
-            row.AddChild(cell);
-            table.AddChild(row);
-
-            var cmd = new AddClassCommand(table, "interactive-table");
-            cmd.Execute();
-
-            var stats = new StatisticsVisitor();
-            table.Accept(stats);
-            
-            Console.WriteLine(table.Render());
-            
-            foreach (var node in table)
-            {
-                Console.WriteLine(node.GetType().Name);
-            }
-        }
-    }
+            Console.WriteLine("\n=== Перевірка InnerHTML таблиці (тільки вміст) ===");
+            Console.WriteLine(table.InnerHTML());
+            Console.ReadKey();
+        }
+    }
 }
